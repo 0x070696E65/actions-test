@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const symbol = require('symbol-sdk');
 const fs = require('fs');
-const WebSocket = require('ws');
+//const WebSocket = require('ws');
 
 require('dotenv').config();
 
@@ -68,6 +68,9 @@ const tx = symbol.TransferTransaction.create(
       symbol.UInt64.fromUint(1000000)
   );
   
+  console.log(agg.serialize())
+  console.log(hashLockTx.serialize())
+  /*
   const signedLockTx = bot.sign(hashLockTx, ng);
   listener.open().then(() => {
       transactionService.announceHashLockAggregateBonded(
@@ -79,6 +82,7 @@ const tx = symbol.TransferTransaction.create(
           listener.close();
       })
   });
+  */
 
   console.log(`Hello ${nameToGreet}!`);
   const time = (new Date()).toTimeString();
