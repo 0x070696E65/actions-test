@@ -6,6 +6,20 @@ const WebSocket = require('ws');
 
 require('dotenv').config();
 
+function sleep(waitSec, callbackFunc) {
+    var spanedSec = 0;
+    var waitFunc = function () {
+        spanedSec++;
+        if (spanedSec >= waitSec) {
+            if (callbackFunc) callbackFunc();
+            return;
+        }
+        clearTimeout(id);
+        id = setTimeout(waitFunc, 1000);
+    };
+    var id = setTimeout(waitFunc, 1000);
+}
+
 function test(){
     fs.readFile('.env', 'utf-8', function(err, data) {
         var ward = "ADDRESS";
@@ -70,10 +84,17 @@ const tx = symbol.TransferTransaction.create(
       symbol.UInt64.fromUint(1000000)
   );
   
-  console.log(agg.serialize())
-  console.log(hashLockTx.serialize())
-  
   const signedLockTx = bot.sign(hashLockTx, ng);
+  txRepo.announce(signedLockTx).subscribe(tx=>{
+    sleep(30, function() {
+        console.log('30秒経過しました！');
+        txRepo.announceAggregateBonded(signedAggregateTx).subscribe(tx=>{
+            console.log(tx.message)
+        })
+
+    });
+  })
+  /*
   listener.open().then(() => {
       transactionService.announceHashLockAggregateBonded(
         signedLockTx,
@@ -84,8 +105,9 @@ const tx = symbol.TransferTransaction.create(
           listener.close();
       })
   });
+  */
 
-  
+
   console.log(`Hello ${nameToGreet}!`);
   const time = (new Date()).toTimeString();
   const address = process.env.ADDRESS;
