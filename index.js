@@ -8,14 +8,10 @@ try {
   console.log(`Hello ${nameToGreet}!`);
   const time = (new Date()).toTimeString();
   const address = process.env.ADDRESS;
+  const fee = process.env.FEE;
   console.log(address);
+  console.log(fee);
   core.setOutput("time", time);
-  const testadd = core.getInput('branch_dev');
-  console.log(testadd);
-  console.log(github.context.payload.ref);
-
-  const aaa = core.getInput('branch');
-  console.log(aaa);
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
