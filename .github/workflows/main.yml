@@ -20,9 +20,10 @@ jobs:
           branch_dev: echo ${GITHUB_REF#refs/heads/}
       # Use the output from the `hello` step
       - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
-        run: echo ${{ github.event.inputs.env }}
-        run: echo ${{ env[format('name_{0}', github.event.inputs.env)] }}
-        run: echo "${GITHUB_REF#refs/heads/}" # PRの番号が取得されてしまいます
-        run: echo "${GITHUB_HEAD_REF}"
-        run: echo "${{ github.ref }}"
+        run:
+          echo "The time was ${{ steps.hello.outputs.time }}"
+          echo ${{ github.event.inputs.env }}
+          echo ${{ env[format('name_{0}', github.event.inputs.env)] }}
+          echo "${GITHUB_REF#refs/heads/}" # PRの番号が取得されてしまいます
+          echo "${GITHUB_HEAD_REF}"
+          echo "${{ github.ref }}"
