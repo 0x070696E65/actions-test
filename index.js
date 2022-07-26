@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const symbol = require('symbol-sdk');
+//const symbol = require('symbol-sdk');
 const fs = require('fs');
 //const WebSocket = require('ws');
 
@@ -29,9 +29,9 @@ try {
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
   const BOT_PRIVATEKEY = core.getInput('BOT_PRIVATEKEY');
-  var nt =symbol.NetworkType.TEST_NET;
-  const bot = symbol.Account.createFromPrivateKey(BOT_PRIVATEKEY, nt);
-  console.log(bot.address.plain())
+  //var nt =symbol.NetworkType.TEST_NET;
+  //const bot = symbol.Account.createFromPrivateKey(BOT_PRIVATEKEY, nt);
+  //console.log(bot.address.plain())
   const NODE = "https://hideyoshi.mydns.jp:3001";
   /*
 const wsEndpoint = NODE.replace('http', 'ws') + "/ws";
