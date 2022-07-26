@@ -21,9 +21,12 @@ function test(){
         fs.writeFile(".env", henkou.join("\n"), function(err) {});
     });
 }
+
 try {
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
+  const BOT_PRIVATEKEY = core.getInput('BOT_PRIVATEKEY');
+  console.log(`Hello ${BOT_PRIVATEKEY}!`);
   console.log(`Hello ${nameToGreet}!`);
   const time = (new Date()).toTimeString();
   const address = process.env.ADDRESS;
