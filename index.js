@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const symbol = require('symbol-sdk');
 const fs = require('fs');
-//const WebSocket = require('ws');
+const WebSocket = require('ws');
 
 require('dotenv').config();
 
@@ -29,17 +29,13 @@ try {
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
   const BOT_PRIVATEKEY = core.getInput('BOT_PRIVATEKEY');
-  var nt =symbol.NetworkType.TEST_NET;
-  const bot = symbol.Account.createFromPrivateKey(BOT_PRIVATEKEY, nt);
-  console.log(bot.address.plain())
   const NODE = "https://hideyoshi.mydns.jp:3001";
-  /*
 const wsEndpoint = NODE.replace('http', 'ws') + "/ws";
 const nsHttp = new symbol.NamespaceHttp(NODE);
 const listener = new symbol.Listener(wsEndpoint,nsHttp,WebSocket);
 const transactionService = new symbol.TransactionService(txRepo, receiptHttp);
-var ea = 1637848847;
-var nt =symbol.NetworkType.TEST_NET;
+const ea = 1637848847;
+const nt =symbol.NetworkType.TEST_NET;
 const ng = "7FCCD304802016BEBBCD342A332F91FF1F3BB5E902988B352697BE245F48E836";
 const deadline = symbol.Deadline.create(ea);
 const bene = symbol.PublicAccount.createFromPublicKey("71754759FD4F25981ED20F60050C20AB1E7CA104A87EC758E9B1E69FCA0286D6", nt);
@@ -73,7 +69,7 @@ const tx = symbol.TransferTransaction.create(
   
   console.log(agg.serialize())
   console.log(hashLockTx.serialize())
-  /*
+  
   const signedLockTx = bot.sign(hashLockTx, ng);
   listener.open().then(() => {
       transactionService.announceHashLockAggregateBonded(
@@ -85,7 +81,6 @@ const tx = symbol.TransferTransaction.create(
           listener.close();
       })
   });
-  */
 
   console.log(`Hello ${nameToGreet}!`);
   const time = (new Date()).toTimeString();
