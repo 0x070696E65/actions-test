@@ -2,17 +2,6 @@ on:
   push:
     branches:
       - dev
-  workflow_dispatch:
-    inputs:
-      env:
-        type: choice
-        options:
-          - dev
-          - prod
-
-env:
-  name_dev: scott
-  name_prod: tiger
 
 jobs:
   hello_world_job:
@@ -28,6 +17,7 @@ jobs:
         id: hello
         with:
           who-to-greet: 'Mona the Octocat'
+          branch_dev: scott
       # Use the output from the `hello` step
       - name: Get the output time
         run: | 

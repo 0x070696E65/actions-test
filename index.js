@@ -10,6 +10,9 @@ try {
   const address = process.env.ADDRESS;
   console.log(address);
   core.setOutput("time", time);
+  const testadd = core.getInput('branch_dev');
+  console.log(testadd);
+  console.log(github.context.workflow);
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
