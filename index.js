@@ -6,7 +6,7 @@ try {
   const nameToGreet = core.getInput('who-to-greet');
   console.log(`Hello ${nameToGreet}!`);
   const time = (new Date()).toTimeString();
-  const address = env('ADDRESS')
+  const address = propcess.env.ADDRESS;
   core.setOutput("address", address);
   core.setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
