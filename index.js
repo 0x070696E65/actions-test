@@ -30,6 +30,9 @@ try {
   const nameToGreet = core.getInput('who-to-greet');
   const BOT_PRIVATEKEY = core.getInput('BOT_PRIVATEKEY');
   const NODE = "https://hideyoshi.mydns.jp:3001";
+  const repositoryFactory = new RepositoryFactoryHttp(NODE);
+const txRepo = repositoryFactory.createTransactionRepository();
+const receiptHttp = repositoryFactory.createReceiptRepository();
 const wsEndpoint = NODE.replace('http', 'ws') + "/ws";
 const nsHttp = new symbol.NamespaceHttp(NODE);
 const listener = new symbol.Listener(wsEndpoint,nsHttp,WebSocket);
