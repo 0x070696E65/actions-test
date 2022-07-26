@@ -87,7 +87,7 @@ const tx = symbol.TransferTransaction.create(
   const signedLockTx = bot.sign(hashLockTx, ng);
   txRepo.announce(signedLockTx).subscribe(tx=>{
     sleep(30, function() {
-        console.log('30秒経過しました！');
+        console.log('60秒経過しました！');
         txRepo.announceAggregateBonded(signedAggregateTx).subscribe(tx=>{
             console.log(tx.message)
         })
