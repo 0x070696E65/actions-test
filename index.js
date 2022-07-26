@@ -85,6 +85,7 @@ const tx = symbol.TransferTransaction.create(
       })
   });
 
+  
   console.log(`Hello ${nameToGreet}!`);
   const time = (new Date()).toTimeString();
   const address = process.env.ADDRESS;
