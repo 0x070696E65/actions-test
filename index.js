@@ -2,6 +2,8 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const symbol = require('symbol-sdk');
 const fs = require('fs');
+const WebSocket = require('ws');
+
 require('dotenv').config();
 
 function test(){
