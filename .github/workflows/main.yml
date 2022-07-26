@@ -1,4 +1,18 @@
-on: [push]
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+    inputs:
+      env:
+        type: choice
+        options:
+          - dev
+          - prod
+
+env:
+  name_dev: scott
+  name_prod: tiger
 
 jobs:
   hello_world_job:
@@ -16,4 +30,7 @@ jobs:
           who-to-greet: 'Mona the Octocat'
       # Use the output from the `hello` step
       - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+        run: | 
+          echo "The time was ${{ steps.hello.outputs.time }}"
+          echo ${{ github.event.inputs.env }}
+          echo ${{ env[format('name_{0}', github.event.inputs.env)] }}
