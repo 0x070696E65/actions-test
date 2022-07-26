@@ -12,7 +12,10 @@ try {
   core.setOutput("time", time);
   const testadd = core.getInput('branch_dev');
   console.log(testadd);
-  console.log(github.context);
+  console.log(github.context.payload.ref);
+
+  const aaa = core.getInput('branch');
+  console.log(aaa);
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);

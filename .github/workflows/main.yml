@@ -24,6 +24,4 @@ jobs:
           echo "The time was ${{ steps.hello.outputs.time }}"
           echo ${{ github.event.inputs.env }}
           echo ${{ env[format('name_{0}', github.event.inputs.env)] }}
-          echo "${GITHUB_REF#refs/heads/}" # PRの番号が取得されてしまいます
-          echo "${GITHUB_HEAD_REF}"
-          echo "${{ github.ref }}"
+          echo "${GITHUB_REF#refs/heads/}"
