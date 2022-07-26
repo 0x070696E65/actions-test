@@ -17,11 +17,11 @@ jobs:
         id: hello
         with:
           who-to-greet: 'Mona the Octocat'
-          branch_dev: echo ${GITHUB_REF#refs/heads/}
       # Use the output from the `hello` step
       - name: Get the output time
         run: | 
           echo "The time was ${{ steps.hello.outputs.time }}"
-          echo ${{ github.event.inputs.env }}
-          echo ${{ env[format('name_{0}', github.event.inputs.env)] }}
-          echo "${GITHUB_REF#refs/heads/}"
+      - name: Print branch name
+        env:
+          BRANCH_NAME: ${{ steps.extract_branch.outputs.branch }}
+        run: echo $BRANCH_NAME

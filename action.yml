@@ -5,14 +5,9 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
-  branch:
-    description: 'branch name'
-    required: true
-    default: '${GITHUB_REF#refs/heads/}'
 outputs:
   time: # id of output
     description: 'The time we greeted you'
 runs:
   using: 'node16'
   main: 'index.js'
-# comment
