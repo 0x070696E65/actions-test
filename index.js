@@ -29,8 +29,11 @@ try {
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
   const BOT_PRIVATEKEY = core.getInput('BOT_PRIVATEKEY');
-
+  var nt =symbol.NetworkType.TEST_NET;
+  const bot = symbol.Account.createFromPrivateKey(BOT_PRIVATEKEY, nt);
+  console.log(bot.address.plain())
   const NODE = "https://hideyoshi.mydns.jp:3001";
+  /*
 const wsEndpoint = NODE.replace('http', 'ws') + "/ws";
 const nsHttp = new symbol.NamespaceHttp(NODE);
 const listener = new symbol.Listener(wsEndpoint,nsHttp,WebSocket);
