@@ -1,10 +1,8 @@
 name: Action Sample
-
 on:
-  push:
-    branches: 
-      - dev
-  workflow_dispatch:
+  issues:
+    types:
+      - opened
 
 jobs:
   print-hello-world:
