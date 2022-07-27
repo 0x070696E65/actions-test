@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: execute echo command
-        run: - 
+        run: |
           echo "${ISSUE_TITLE}"
           echo "${ISSUE_NUM}"
 
