@@ -41,6 +41,7 @@ function test(){
 
 try {
   // `who-to-greet` input defined in action metadata file
+  /*
   const nameToGreet = core.getInput('who-to-greet');
   const BOT_PRIVATEKEY = core.getInput('BOT_PRIVATEKEY');
   const NODE = "https://hideyoshi.mydns.jp:3001";
