@@ -9,8 +9,8 @@ jobs:
     steps:
       - name: execute echo command
         run: |
-          echo "${ISSUE_TITLE}"
-          echo "${ISSUE_NUM}"
+          echo ${ISSUE_TITLE}
+          echo ${ISSUE_NUM}
 
 #on:
 #  push:
