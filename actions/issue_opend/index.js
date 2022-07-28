@@ -19,10 +19,11 @@ try {
       identifier: 'matsukawa5955+bot@gmail.com',
       password: 'Bot1234567890',
     })
-    .then((response) => {
+    .then((resAuth) => {
       console.log('Well done!');
-      console.log('User profile', response.data.user);
-      console.log('User token', response.data.jwt);
+      console.log('User profile', resAuth.data.user);
+      const token = resAuth.data.jwt;
+      console.log('User token', token);
 
       const issue = github.context.payload.issue;
       const title = issue.title;
@@ -45,11 +46,11 @@ try {
       axios
         .post('http://localhost:1337/api/rewards', data, {
           headers: {
-            Authorization: `Bearer ${response.data.jwt}`,
+            Authorization: `Bearer ${token}`,
           }
         })
-        .then((response) => {
-          console.log('Data: ', response.data);
+        .then((resReward) => {
+          console.log('Data: ', resReward.data);
         })
         .catch((error) => {
           console.log('An error occurred:', error.response);
