@@ -14976,6 +14976,14 @@ function getValue(data, ward) {
 }
 
 try {
+  axios.get("http://localhost:1337/api/users")
+  .then((res)=>{
+    console.log(res.data)
+  })
+  .catch((error) => {
+    core.setFailed("AA: " + error.response);
+  });
+  /*
   axios
     .post('http://localhost:1337/api/auth/local', {
       identifier: 'matsukawa5955+bot@gmail.com',
@@ -15021,6 +15029,7 @@ try {
     .catch((error) => {
       core.setFailed("B: " + error.response);
     });
+  */
 } catch (error) {
   core.setFailed("C:" + error.message);
 }
