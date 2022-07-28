@@ -53,11 +53,11 @@ try {
           console.log('Data: ', resReward.data);
         })
         .catch((error) => {
-          console.log('An error occurred:', error.response);
+          core.setFailed(error.response);
         });
     })
     .catch((error) => {
-      console.log('An error occurred:', error.response);
+      core.setFailed(error.response);
     });
 } catch (error) {
   core.setFailed(error.message);
