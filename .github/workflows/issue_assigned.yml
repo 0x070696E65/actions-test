@@ -1,4 +1,4 @@
-name: Action Sample
+name: Task Assigned
 on:
   issues:
     types: [assigned]
@@ -10,5 +10,5 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: excute js
+      - name: Task Assigned
         uses: ./actions/issue_assigned # Uses an action in the root directory

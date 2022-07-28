@@ -1,4 +1,4 @@
-name: Action Sample
+name: Task Opend
 on:
   issues:
     types: [opened]
@@ -10,9 +10,5 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: execute echo command
-        run: |
-          echo ${{ github.event.issue.title }}
-          echo ${{ github.event.issue.number }}
-      - name: excute js
+      - name: Task Opend
         uses: ./actions/issue_opend # Uses an action in the root directory

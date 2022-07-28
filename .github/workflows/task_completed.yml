@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Hello world action step
-        uses: ./actions/push # Uses an action in the root directory
+        uses: ./actions/task_completed # Uses an action in the root directory
         env:
           BOT_PRIVATEKEY: ${{ secrets.BOT_PRIVATEKEY }}
         id: hello
