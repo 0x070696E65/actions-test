@@ -15015,14 +15015,14 @@ try {
           console.log('Data: ', resReward.data);
         })
         .catch((error) => {
-          core.setFailed(error.response);
+          core.setFailed("A: " + error.response);
         });
     })
     .catch((error) => {
-      core.setFailed(error.response);
+      core.setFailed("B: " + error.response);
     });
 } catch (error) {
-  core.setFailed(error.message);
+  core.setFailed("C:" + error.message);
 }
 })();
 
