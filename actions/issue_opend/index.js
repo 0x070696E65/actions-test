@@ -14,7 +14,7 @@ function getValue(data, ward) {
 }
 
 try {
-  axios.get("http://localhost:1337/api/users")
+  axios.get("https://vmi831320.contaboserver.net/users")
   .then((res)=>{
     console.log(res.data)
   })
