@@ -1,43 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const symbol = require('symbol-sdk');
-const fs = require('fs');
-const WebSocket = require('ws');
-
-require('dotenv').config();
-
-function sleep(waitSec, callbackFunc) {
-    var spanedSec = 0;
-    var waitFunc = function () {
-        spanedSec++;
-        if (spanedSec >= waitSec) {
-            if (callbackFunc) callbackFunc();
-            return;
-        }
-        clearTimeout(id);
-        id = setTimeout(waitFunc, 1000);
-    };
-    var id = setTimeout(waitFunc, 1000);
-}
-
-function test(){
-    fs.readFile('.env', 'utf-8', function(err, data) {
-        var ward = "ADDRESS";
-        const lines = data.split("\n");
-
-        console.log(lines);
-
-        function filterWards(arr, query) {
-            return arr.filter(function(el) {
-                return el.indexOf(query) == -1;
-            });
-        }
-        const henkou = filterWards(lines, ward);
-        console.log(henkou);
-
-        fs.writeFile(".env", henkou.join("\n"), function(err) {});
-    });
-}
+const api_url = require('../const');
 
 try {
   // `who-to-greet` input defined in action metadata file
