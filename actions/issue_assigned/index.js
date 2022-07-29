@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const axios = require('axios');
+const {api_url} = require('../const');
 
 try {
   const issue = github.context.payload.issue;
@@ -10,7 +11,7 @@ try {
   console.log(issue_number);
 
   axios
-    .post('http://localhost:1337/api/auth/local', {
+    .post(api_url + '/api/auth/local', {
       identifier: 'matsukawa5955+bot@gmail.com',
       password: 'Bot1234567890',
     })
@@ -19,7 +20,7 @@ try {
       const token = resAuth.data.jwt;
       console.log('User token', token);
       axios
-        .get('http://localhost:1337/api/users')
+        .get(api_url + '/api/users')
         .then((resUser) => {
           const users = resUser.data;
           console.log(users);
@@ -33,14 +34,14 @@ try {
             }
           }
           axios
-            .get('http://localhost:1337/api/rewards')
+            .get(api_url + '/api/rewards')
             .then((resReward) => {
               const rewards = resReward.data.data;
               const reward = rewards.find((d) => d.attributes.issueNumber === issueNumber);
               console.log(reward.id);
 
               axios
-                .put('http://localhost:1337/api/rewards/' + reward.id, data, {
+                .put(api_url + '/api/rewards/' + reward.id, data, {
                   headers: {
                     Authorization: `Bearer ${token}`,
                   }

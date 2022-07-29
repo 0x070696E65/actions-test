@@ -1,6 +1,7 @@
 name: Issue Connected
 on:
   issues:
+    types: edited
 
 jobs:
   issue_connected:
