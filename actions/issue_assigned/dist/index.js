@@ -1001,6 +1001,14 @@ function plural(ms, msAbs, n, name) {
 
 /***/ }),
 
+/***/ 5405:
+/***/ ((module) => {
+
+const api_url = "http://localhost:1337";
+module.exports = {api_url};
+
+/***/ }),
+
 /***/ 6645:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -14963,16 +14971,17 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(3376);
 const github = __nccwpck_require__(1166);
 const axios = __nccwpck_require__(9966);
+const { api_url } = __nccwpck_require__(5405);
 
 try {
   const issue = github.context.payload.issue;
   const assigneeId = issue.assignee.login;
-  console.log(assigneeId);
   const issue_number = issue.number;
-  console.log(issue_number);
 
+  const BOT_ID = core.getInput('BOT_ID');
+  console.log(BOT_ID);
   axios
-    .post('http://localhost:1337/api/auth/local', {
+    .post(api_url + '/api/auth/local', {
       identifier: 'matsukawa5955+bot@gmail.com',
       password: 'Bot1234567890',
     })
@@ -14981,7 +14990,7 @@ try {
       const token = resAuth.data.jwt;
       console.log('User token', token);
       axios
-        .get('http://localhost:1337/api/users')
+        .get(api_url + '/api/users')
         .then((resUser) => {
           const users = resUser.data;
           console.log(users);
@@ -14995,14 +15004,14 @@ try {
             }
           }
           axios
-            .get('http://localhost:1337/api/rewards')
+            .get(api_url + '/api/rewards')
             .then((resReward) => {
               const rewards = resReward.data.data;
-              const reward = rewards.find((d) => d.attributes.issueNumber === issueNumber);
+              const reward = rewards.find((d) => d.attributes.issueNumber === issue_number);
               console.log(reward.id);
 
               axios
-                .put('http://localhost:1337/api/rewards/' + reward.id, data, {
+                .put(api_url + '/api/rewards/' + reward.id, data, {
                   headers: {
                     Authorization: `Bearer ${token}`,
                   }
@@ -15011,19 +15020,23 @@ try {
                   console.log('Data: ', resUpdateReward.data);
                 })
                 .catch((error) => {
-                  console.log('An error occurred:', error.response);
+                  console.error(error.message);
+                  throw error;
                 });
             })
             .catch((error) => {
-              console.log('An error occurred:', error.response);
+              console.error(error.message);
+              throw error;
             });
         })
         .catch((error) => {
-          console.log('An error occurred:', error.response);
+          console.error(error.message);
+          throw error;
         });
     })
     .catch((error) => {
-      console.log('An error occurred:', error.response);
+      console.error(error.message);
+      throw error;
     });
 } catch (error) {
   core.setFailed(error.message);
