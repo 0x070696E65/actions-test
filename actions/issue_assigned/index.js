@@ -1,15 +1,15 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const axios = require('axios');
-const {api_url} = require('../const');
+const { api_url } = require('../const');
 
 try {
   const issue = github.context.payload.issue;
   const assigneeId = issue.assignee.login;
-  console.log(assigneeId);
   const issue_number = issue.number;
-  console.log(issue_number);
 
+  const BOT_ID = core.getInput('BOT_ID');
+  console.log(BOT_ID);
   axios
     .post(api_url + '/api/auth/local', {
       identifier: 'matsukawa5955+bot@gmail.com',
@@ -37,7 +37,7 @@ try {
             .get(api_url + '/api/rewards')
             .then((resReward) => {
               const rewards = resReward.data.data;
-              const reward = rewards.find((d) => d.attributes.issueNumber === issueNumber);
+              const reward = rewards.find((d) => d.attributes.issueNumber === issue_number);
               console.log(reward.id);
 
               axios
@@ -50,19 +50,23 @@ try {
                   console.log('Data: ', resUpdateReward.data);
                 })
                 .catch((error) => {
-                  console.log('An error occurred:', error.response);
+                  console.error(error.message);
+                  throw error;
                 });
             })
             .catch((error) => {
-              console.log('An error occurred:', error.response);
+              console.error(error.message);
+              throw error;
             });
         })
         .catch((error) => {
-          console.log('An error occurred:', error.response);
+          console.error(error.message);
+          throw error;
         });
     })
     .catch((error) => {
-      console.log('An error occurred:', error.response);
+      console.error(error.message);
+      throw error;
     });
 } catch (error) {
   core.setFailed(error.message);
