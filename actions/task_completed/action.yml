@@ -1,5 +1,5 @@
-name: 'Task Completed'
-description: 'Task Completed'
+name: 'Issue Completed'
+description: 'Issue Completed'
 inputs:
   who-to-greet:  # id of input
     description: 'Who to greet'

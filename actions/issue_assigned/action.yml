@@ -1,5 +1,5 @@
-name: 'Task Assigned'
-description: 'Task Assigned'
+name: 'Issue Assigned'
+description: 'Issue Assigned'
 runs:
   using: 'node16'
   main: 'dist/index.js'

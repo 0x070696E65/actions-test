@@ -1,8 +1,9 @@
 name: Issue Connected
 on:
-  issues:
-    types: [connected]
-  label:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
 
 jobs:
   issue_opend:
