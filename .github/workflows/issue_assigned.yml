@@ -1,8 +1,7 @@
 name: Issue Assigned
 on:
   issues:
-    types: [assigned]
-  label:
+    types: assigned
 
 jobs:
   issue_assigned:

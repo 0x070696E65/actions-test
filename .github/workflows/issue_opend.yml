@@ -1,8 +1,7 @@
 name: Issue Opend
 on:
   issues:
-    types: [opened]
-  label:
+    types: opened
 
 jobs:
   issue_opend:

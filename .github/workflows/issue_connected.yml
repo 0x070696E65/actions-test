@@ -1,12 +1,9 @@
 name: Issue Connected
 on:
-  pull_request:
-    branches:
-      - main
-    types: [closed]
+  issues:
 
 jobs:
-  issue_opend:
+  issue_connected:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
