@@ -14963,7 +14963,7 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(3376);
 const github = __nccwpck_require__(1166);
 const axios = __nccwpck_require__(9966);
-
+const api_url = "";
 function getValue(data, ward) {
   const lines = data.split("\n");
   function filterWards(arr, query) {
@@ -14976,37 +14976,24 @@ function getValue(data, ward) {
 }
 
 try {
-  axios.get("https://vmi831320.contaboserver.net/users")
-  .then((res)=>{
-    console.log(res.data)
-  })
-  .catch((error) => {
-    core.setFailed("AA: " + error.response);
-  });
-  /*
   axios
-    .post('http://localhost:1337/api/auth/local', {
+    .post(api_url + '/api/auth/local', {
       identifier: 'matsukawa5955+bot@gmail.com',
       password: 'Bot1234567890',
     })
     .then((resAuth) => {
-      console.log('Well done!');
-      console.log('User profile', resAuth.data.user);
       const token = resAuth.data.jwt;
-      console.log('User token', token);
-
       const issue = github.context.payload.issue;
       const title = issue.title;
+      const issue_number = issue.number;
       const issue_url = issue.html_url;
       const comment = issue.body;
       const reward_amount = getValue(comment, "#reward=")
 
-      console.log(github.context.payload);
-
       const data = {
         "data": {
           "issueTitle": title,
-          "issueNumber": 0,
+          "issueNumber": issue_number,
           "issueUrl": issue_url,
           "rewardType": 0,
           "rewardAmount": reward_amount,
@@ -15014,7 +15001,7 @@ try {
       }
 
       axios
-        .post('http://localhost:1337/api/rewards', data, {
+        .post(api_url + '/api/rewards', data, {
           headers: {
             Authorization: `Bearer ${token}`,
           }
@@ -15023,15 +15010,14 @@ try {
           console.log('Data: ', resReward.data);
         })
         .catch((error) => {
-          core.setFailed("A: " + error.response);
+          core.setFailed(error.message);
         });
     })
     .catch((error) => {
-      core.setFailed("B: " + error.response);
+      core.setFailed(error.message);
     });
-  */
 } catch (error) {
-  core.setFailed("C:" + error.message);
+  core.setFailed(error.message);
 }
 })();
 
