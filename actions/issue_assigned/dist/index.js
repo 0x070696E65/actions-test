@@ -14977,9 +14977,10 @@ try {
   const issue = github.context.payload.issue;
   const assigneeId = issue.assignee.login;
   const issue_number = issue.number;
-
   const BOT_ID = core.getInput('BOT_ID');
   console.log(BOT_ID);
+
+  /*
   axios
     .post(api_url + '/api/auth/local', {
       identifier: 'matsukawa5955+bot@gmail.com',
@@ -15038,6 +15039,7 @@ try {
       console.error(error.message);
       throw error;
     });
+  */
 } catch (error) {
   core.setFailed(error.message);
 }
