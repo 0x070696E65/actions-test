@@ -1,14 +1,14 @@
-name: Task Assigned
+name: Issue Assigned
 on:
   issues:
     types: [assigned]
   label:
 
 jobs:
-  print-hello-world:
+  issue_assigned:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Task Assigned
-        uses: ./actions/issue_assigned # Uses an action in the root directory
+      - name: Issue Assigned
+        uses: ./actions/issue_assigned

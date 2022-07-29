@@ -1,7 +1,7 @@
-name: Issue Opend
+name: Issue Connected
 on:
   issues:
-    types: [opened]
+    types: [connected]
   label:
 
 jobs:
@@ -10,5 +10,5 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Issue Opend
-        uses: ./actions/issue_opend
+      - name: Issue Connected
+        uses: ./actions/issue_connected
