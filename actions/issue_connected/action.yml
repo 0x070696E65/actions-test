@@ -1,0 +1,5 @@
+name: 'Issue Connected'
+description: 'Issue Connected'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
