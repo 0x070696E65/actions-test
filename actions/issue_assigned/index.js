@@ -7,7 +7,7 @@ try {
   const issue = github.context.payload.issue;
   const assigneeId = issue.assignee.login;
   const issue_number = issue.number;
-  const BOT_ID = core.getInput('BOT_ID');
+  const BOT_ID = process.env.BOT_ID;
   console.log(BOT_ID);
 
   /*
