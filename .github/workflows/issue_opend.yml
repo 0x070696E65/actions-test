@@ -9,6 +9,7 @@ jobs:
     env:
       ISSUE_TITLE: ${{ github.event.issue.title }}
       GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
+      ISSUE_NUM: ${{ github.event.issue.number }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -21,6 +22,11 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           new_branch: ${{ github.event.issue.title }}
+      - name: Create files
+        run: |
+          mkdir $ISSUE_NUM
+          echo -e "こんにちは、CX事業本部 IoT事業部の若槻です。\n\n今回は、${ISSUE_TITLE}\n\n## おわりに\n\n\n\n## 参考\n\n\n\n以上" \
+            >> $ISSUE_NUM/article.md
       - name: Create PR
         run: |
           gh pr create \
