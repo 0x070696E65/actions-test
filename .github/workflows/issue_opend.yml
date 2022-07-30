@@ -1,18 +1,15 @@
 name: Issue Opend
 on:
   issues:
-    types: labeled
+    types: opened
 
 jobs:
   issue_opend:
     runs-on: ubuntu-latest
     steps:
-      - name: check label
-        run: echo ${{ github.event.label.name }}
-      - name: check label
-        if: github.event.label.name != 'enhancement'
-        run: |
-          exit 1
+      - name: check title
+        if: [ `echo ${{ github.event.issue.title }}  | grep 'future'` ]
+        run: exit 1
       - name: Checkout
         uses: actions/checkout@v3
       - name: Issue Opend
