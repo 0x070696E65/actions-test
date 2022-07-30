@@ -14987,7 +14987,7 @@ try {
   const issue = github.context.payload.issue;
   const title = issue.title;
   if (!title.match(/future/)) {
-    throw "title に future が含まれていないため終了します";
+    throw new Error("title に future が含まれていないため終了します");
   }
   const issue_number = issue.number;
   const issue_url = issue.html_url;
