@@ -9,8 +9,9 @@ jobs:
     steps:
       - name: check label
         if: github.event.issue.label != 'enhancement'
-        run: echo github.event.issue.label
-        run: exit 1
+        run: |
+          echo github.event.issue.label
+          exit 1
       - name: Checkout
         uses: actions/checkout@v3
       - name: Issue Opend
