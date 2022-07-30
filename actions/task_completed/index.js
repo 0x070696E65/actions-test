@@ -4,15 +4,10 @@ const axios = require('axios');
 const api_url = require('../const');
 
 try {
-    //const issue = github.context.payload.issue;
-    //const branchName = github.context.payload.repository.name;
-    const issue_number = github.context.payload
-    console.log(github.context.payload.number)
-    console.log(github.context.payload.pull_request.number)
-    console.log(github.context.payload.pull_request.head.ref)
-    console.log(github.context.payload.sender.login)
-    // test
-    /*
+    const branchName = github.context.payload.pull_request.head.ref;
+    const issueNumber = github.context.payload.pull_request.number
+    const assigneeId = github.context.payload.sender.login;
+
     axios
         .post(api_url + '/api/auth/local', {
             identifier: process.env.BOT_ID,
@@ -57,7 +52,6 @@ try {
             console.error(error.message);
             throw error;
         });
-    */
 } catch (error) {
     core.setFailed(error.message);
 }
