@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const axios = require('axios');
-const {api_url} = require('../const');
+const { api_url } = require('../const');
 function getValue(data, ward) {
   const lines = data.split("\n");
   function filterWards(arr, query) {
@@ -14,6 +14,15 @@ function getValue(data, ward) {
 }
 
 try {
+  const issue = github.context.payload.issue;
+  const title = issue.title;
+  if (!title.match(/future/)) {
+    console.log("title に future が含まれていないため終了します");
+    throw error;
+  }
+  const issue_number = issue.number;
+  const issue_url = issue.html_url;
+  const comment = issue.body;
   axios
     .post(api_url + '/api/auth/local', {
       identifier: 'matsukawa5955+bot@gmail.com',
@@ -21,11 +30,6 @@ try {
     })
     .then((resAuth) => {
       const token = resAuth.data.jwt;
-      const issue = github.context.payload.issue;
-      const title = issue.title;
-      const issue_number = issue.number;
-      const issue_url = issue.html_url;
-      const comment = issue.body;
       const reward_amount = getValue(comment, "#reward=")
 
       const data = {

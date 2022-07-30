@@ -7,9 +7,6 @@ jobs:
   issue_opend:
     runs-on: ubuntu-latest
     steps:
-      - name: check title
-        if: [ `echo ${{ github.event.issue.title }}  | grep 'future'` ]
-        run: exit 1
       - name: Checkout
         uses: actions/checkout@v3
       - name: Issue Opend
