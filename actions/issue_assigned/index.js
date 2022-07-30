@@ -14,17 +14,12 @@ try {
       password: process.env.BOT_PASSWORD,
     })
     .then((resAuth) => {
-      console.log('User profile', resAuth.data.user);
       const token = resAuth.data.jwt;
-      console.log('User token', token);
       axios
         .get(api_url + '/api/users')
         .then((resUser) => {
           const users = resUser.data;
-          console.log(users);
-
           const user = users.find((d) => d.githubId === assigneeId);
-          console.log(user);
           const data = {
             "data": {
               "githubId": assigneeId,
@@ -36,7 +31,6 @@ try {
             .then((resReward) => {
               const rewards = resReward.data.data;
               const reward = rewards.find((d) => d.attributes.issueNumber === issue_number);
-              console.log(reward.id);
 
               axios
                 .put(api_url + '/api/rewards/' + reward.id, data, {

@@ -1,26 +1,17 @@
 on:
-  push:
+  pull_request:
     branches:
-      - test
+      - main
+    types: [closed]
 
 jobs:
-  hello_world_job:
+  Task completed:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Task completed
     steps:
-      # To use this repository's private action,
-      # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Hello world action step
-        uses: ./actions/task_completed # Uses an action in the root directory
-        env:
-          BOT_PRIVATEKEY: ${{ secrets.BOT_PRIVATEKEY }}
-        id: hello
+      - name: Task completed
+        uses: ./actions/task_completed
         with:
-          who-to-greet: 'Mona the Octocat'
-          BOT_PRIVATEKEY: ${{ secrets.BOT_PRIVATEKEY }}
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: | 
-          echo "The time was ${{ steps.hello.outputs.time }}"
+          BASE_BRANCH_NAME: ${{ github.event.repository.default_branch }}
