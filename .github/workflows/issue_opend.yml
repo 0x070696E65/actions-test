@@ -24,7 +24,7 @@ jobs:
             --head $NEW_BRANCH_NAME \
             --base $BASE_BRANCH_NAME \
             --title "$ISSUE_TITLE" \
-            --body "created new branch ${$NEW_BRANCH_NAME}"
+            --body "created new branch ${NEW_BRANCH_NAME}"
         env:
           NEW_BRANCH_NAME: ${{ github.event.issue.title }}
           BASE_BRANCH_NAME: ${{ github.event.repository.default_branch }}
