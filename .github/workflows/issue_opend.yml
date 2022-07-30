@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check label
+        run: echo github.event.label.name
+      - name: check label
         if: github.event.label.name != 'enhancement'
         run: |
           exit 1
