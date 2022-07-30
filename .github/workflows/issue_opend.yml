@@ -14,3 +14,7 @@ jobs:
         env:
           BOT_ID: ${{ secrets.BOT_ID }}
           BOT_PASSWORD: ${{ secrets.BOT_PASSWORD }}
+      - name: Create branch
+        uses: EndBug/add-and-commit@v9
+        with:
+          new_branch: ${{ github.event.issue.title }}

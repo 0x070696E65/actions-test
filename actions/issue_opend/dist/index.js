@@ -15003,7 +15003,7 @@ try {
 
       const data = {
         "data": {
-          "issueTitle": title,
+          "branchName": title,
           "issueNumber": issue_number,
           "issueUrl": issue_url,
           "rewardType": 0,
