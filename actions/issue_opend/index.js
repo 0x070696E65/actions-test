@@ -19,14 +19,14 @@ try {
   if (!title.match(/future/)) {
     throw new Error("title に future が含まれていないため終了します");
   }
-  /*
+
   const issue_number = issue.number;
   const issue_url = issue.html_url;
   const comment = issue.body;
   axios
     .post(api_url + '/api/auth/local', {
-      identifier: 'matsukawa5955+bot@gmail.com',
-      password: 'Bot1234567890',
+      identifier: process.env.BOT_ID,
+      password: process.env.BOT_PASSWORD,
     })
     .then((resAuth) => {
       const token = resAuth.data.jwt;
@@ -58,7 +58,6 @@ try {
     .catch((error) => {
       core.setFailed(error.message);
     });
-    */
 } catch (error) {
   core.setFailed(error.message);
 }
