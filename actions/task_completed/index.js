@@ -6,11 +6,7 @@ const api_url = require('../const');
 try {
     const issue = github.context.payload.issue;
     const branchName = github.context.payload.repository.name;
-    const assigneeId = issue.assignee.login;
-    const issueNumber = issue.number;
-    console.log(branchName)
-    console.log(assigneeId)
-    console.log(issueNumber)
+    console.log(github.context.payload)
     // test
     /*
     axios
