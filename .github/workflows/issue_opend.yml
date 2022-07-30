@@ -7,6 +7,9 @@ jobs:
   issue_opend:
     runs-on: ubuntu-latest
     steps:
+      - name: check label
+        if: github.event.issue.label != 'enhancement'
+        run: exit 1
       - name: Checkout
         uses: actions/checkout@v3
       - name: Issue Opend
