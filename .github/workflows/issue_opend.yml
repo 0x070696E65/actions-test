@@ -6,6 +6,9 @@ on:
 jobs:
   issue_opend:
     runs-on: ubuntu-latest
+    env:
+      ISSUE_TITLE: ${{ github.event.issue.title }}
+      GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
