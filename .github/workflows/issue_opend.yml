@@ -8,9 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check label
-        if: | 
-          ((github.event.action == 'labeled') && 
-          (github.event.label.name != 'enhancement'))
         run: |
           echo ${{ github.event.issue.label.name }}
           exit 1
