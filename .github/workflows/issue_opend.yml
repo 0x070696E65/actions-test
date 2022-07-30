@@ -16,6 +16,22 @@ jobs:
       contents: write
       pull-requests: write
     steps:
+      - name: Get open linked PR
+        id: get_open_linked_pr
+        run: |
+          open_linked_pr_length=$(\
+            gh pr list \
+              --repo $REPO \
+              --state open \
+              --search "close #$ISSUE_NUM in:body" \
+              --json number | jq '. | length'\
+          )
+          echo "::set-output name=open_linked_pr_length::$open_linked_pr_length"
+      - name: Check open linked pr length
+        if: steps.get_open_linked_pr.outputs.open_linked_pr_length != 0
+        run: |
+          echo "Unclosed pull request is existing."
+          exit 1
       - name: Checkout
         uses: actions/checkout@v3
       - name: Issue Opend
@@ -25,9 +41,8 @@ jobs:
           BOT_PASSWORD: ${{ secrets.BOT_PASSWORD }}
       - name: Create files
         run: |
-          mkdir $ISSUE_NUM
-          echo -e "こんにちは、CX事業本部 IoT事業部の若槻です。\n\n今回は、${ISSUE_TITLE}\n\n## おわりに\n\n\n\n## 参考\n\n\n\n以上" \
-            >> $ISSUE_NUM/article.md
+          echo -e "branch name is ${{ github.event.issue.title }}" \
+            >> ./README.md
       - name: Create branch
         uses: EndBug/add-and-commit@v9
         with:
