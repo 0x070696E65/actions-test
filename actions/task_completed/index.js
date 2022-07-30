@@ -11,7 +11,7 @@ try {
     console.log(branchName)
     console.log(assigneeId)
     console.log(issueNumber)
-    // test
+    // tes
     /*
     axios
         .post(api_url + '/api/auth/local', {
