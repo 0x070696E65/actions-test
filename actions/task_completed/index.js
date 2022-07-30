@@ -7,7 +7,7 @@ try {
     //const issue = github.context.payload.issue;
     //const branchName = github.context.payload.repository.name;
     console.log(github.context.payload)
-    // test
+    
     /*
     axios
         .post(api_url + '/api/auth/local', {
