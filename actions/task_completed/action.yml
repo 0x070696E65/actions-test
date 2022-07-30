@@ -1,13 +1,5 @@
-name: 'Issue Completed'
-description: 'Issue Completed'
-inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+name: 'Task Completed'
+description: 'Task Completed'
 runs:
   using: 'node16'
   main: 'dist/index.js'
