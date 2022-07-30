@@ -4,8 +4,8 @@ const axios = require('axios');
 const api_url = require('../const');
 
 try {
-    const issue = github.context.payload.issue;
-    const branchName = github.context.payload.repository.name;
+    //const issue = github.context.payload.issue;
+    //const branchName = github.context.payload.repository.name;
     console.log(github.context.payload)
     // test
     /*
