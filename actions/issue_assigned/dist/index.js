@@ -1004,7 +1004,7 @@ function plural(ms, msAbs, n, name) {
 /***/ 5405:
 /***/ ((module) => {
 
-const api_url = "http://localhost:1337";
+const api_url = "https://2b02-213-7-125-43.eu.ngrok.io";
 module.exports = {api_url};
 
 /***/ }),
@@ -14977,27 +14977,19 @@ try {
   const issue = github.context.payload.issue;
   const assigneeId = issue.assignee.login;
   const issue_number = issue.number;
-  const BOT_ID = process.env.BOT_ID;
-  console.log(BOT_ID);
 
-  /*
   axios
     .post(api_url + '/api/auth/local', {
-      identifier: 'matsukawa5955+bot@gmail.com',
-      password: 'Bot1234567890',
+      identifier: process.env.BOT_ID,
+      password: process.env.BOT_PASSWORD,
     })
     .then((resAuth) => {
-      console.log('User profile', resAuth.data.user);
       const token = resAuth.data.jwt;
-      console.log('User token', token);
       axios
         .get(api_url + '/api/users')
         .then((resUser) => {
           const users = resUser.data;
-          console.log(users);
-
           const user = users.find((d) => d.githubId === assigneeId);
-          console.log(user);
           const data = {
             "data": {
               "githubId": assigneeId,
@@ -15009,7 +15001,6 @@ try {
             .then((resReward) => {
               const rewards = resReward.data.data;
               const reward = rewards.find((d) => d.attributes.issueNumber === issue_number);
-              console.log(reward.id);
 
               axios
                 .put(api_url + '/api/rewards/' + reward.id, data, {
@@ -15039,7 +15030,6 @@ try {
       console.error(error.message);
       throw error;
     });
-  */
 } catch (error) {
   core.setFailed(error.message);
 }
