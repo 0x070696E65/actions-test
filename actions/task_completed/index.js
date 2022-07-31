@@ -23,8 +23,8 @@ try {
                 .then((resRewards) => {
                     const rewards = resRewards.data.data;
                     const reward = rewards.find((d) => d.attributes.branchName === branchName);
-                    if (reward.attributes.githubId != assigneeId) throw new Error("GithubIdが違います")
-                    if (reward.attributes.branchName != branchName) throw new Error("Branch名が違います")
+                    if (reward.attributes.githubId != assigneeId) throw new Error("GithubIdが違います");
+                    if (reward.attributes.branchName != branchName) throw new Error("Branch名が違います");
                     const address = reward.attributes.symbolAddress;
                     const amount = reward.attributes.rewardAmount;
                     axios
