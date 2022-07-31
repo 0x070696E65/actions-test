@@ -23,12 +23,11 @@ try {
                 })
                 .then((resRewards) => {
                     const rewards = resRewards.data.data;
-                    const reward = rewards.find((d) => {
-                        d.attributes.issueNumber === issueNumber
-                        console.log(d.attributes.issueNumber)
-                        console.log(issueNumber)
+                    let reward = undefined;
+                    for(let i = 0; i < rewards.length; i++) {
+                        if(rewards[i].attributes.issueNumber) reward = rewards[i];
                     }
-                    );
+                    console.log(reward);
                     if (reward.attributes.issueNumber !== issueNumber) throw new Error("該当のIssueが存在しません");
                     if (reward.attributes.githubId !== assigneeId) throw new Error("GithubIdが違います")
                     if (reward.attributes.branchName !== branchName) throw new Error("Branch名が違います")
