@@ -5,7 +5,7 @@ const { api_url } = require('../const');
 
 try {
     const branchName = github.context.payload.pull_request.head.ref;
-    console.log(github.context.payload)
+    console.log(github.context.payload);
     const issueNumber = Number(github.context.payload.pull_request.number);
     const assigneeId = github.context.payload.sender.login;
 
