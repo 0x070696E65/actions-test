@@ -23,7 +23,7 @@ try {
                 })
                 .then((resRewards) => {
                     const rewards = resRewards.data.data;
-                    console.log(rewards);
+                    console.log(rewards)
                     const reward = rewards.find((d) => d.attributes.issueNumber === issueNumber);
                     if (reward == undefined) throw new Error("該当のIssueが存在しません")
                     if (reward.attributes.githubId !== assigneeId) throw new Error("GithubIdが違います")
