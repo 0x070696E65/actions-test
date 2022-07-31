@@ -21,6 +21,7 @@ body:
     id: reward
     attributes:
       label: 報酬
+      value: #reward=
       description: 完了した際に支払われるXYMの総量
     validations:
       required: true
