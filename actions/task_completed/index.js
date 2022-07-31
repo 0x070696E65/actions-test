@@ -1,16 +1,12 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const axios = require('axios');
-const api_url = require('../const');
+const { api_url } = require('../const');
 
 try {
     const branchName = github.context.payload.pull_request.head.ref;
     const issueNumber = github.context.payload.pull_request.number;
     const assigneeId = github.context.payload.sender.login;
-
-    console.log(branchName)
-    console.log(issueNumber)
-    console.log(assigneeId)
 
     axios
         .post(api_url + '/api/auth/local', {
