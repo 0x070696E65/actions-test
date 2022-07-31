@@ -1,27 +1,32 @@
-# Hello world javascript action
+# GithubActions for Symbol DAO
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+Symbolコミュニティによるウェブサイト作成などに使用するGithubActions
 
-## Inputs
+## Usage
 
-## `who-to-greet`
+StrApi
+Settings -> ContentManager -> User<br>
+[Create New Entry]
+role を bot にする<br>
 
-**Required** The name of the person to greet. デフォルトは `"World"`。
+`actions/const.js`
+``` javascript
+const api_url = "API_URL";
+```
 
-## Outputs
+Github -> Repository -> Settings -> Secret -> Actions<br>
+[New Repository Secret]
 
-## `time`
+- 1<br>
+Name: ACTIONS_TOKEN<br>
+Value: Githubのアクセストークン
 
-The time we greeted you.
+- 2<br>
+Name: BOT_ID<br>
+Value: Botのアドレス
 
-## 使用例
+- 3<br>
+Name: BOT_PASSWORD<br>
+Value: Botのパスワード
 
-uses: actions/hello-world-javascript-action@v1.1
-with:
-  who-to-greet: 'Mona the Octocat'
 
-testbranch name is future/test2
-branch name is future/test3
-branch name is future/test4
-branch name is future/test5
-branch name is future/test6
