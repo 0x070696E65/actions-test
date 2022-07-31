@@ -14975,6 +14975,7 @@ const { api_url } = __nccwpck_require__(5405);
 
 try {
     const branchName = github.context.payload.pull_request.head.ref;
+    console.log(github.context.payload);
     const issueNumber = Number(github.context.payload.pull_request.number);
     const assigneeId = github.context.payload.sender.login;
 
@@ -14997,7 +14998,7 @@ try {
                     for(let i = 0; i < rewards.length; i++) {
                         if(rewards[i].attributes.issueNumber) reward = rewards[i];
                     }
-                    console.log(reward.attributes.issueNumber)
+                    console.log(reward.attributes.issueNumber);
                     console.log(issueNumber)
                     if (reward.attributes.issueNumber != issueNumber) throw new Error("該当のIssueが存在しません");
                     if (reward.attributes.githubId != assigneeId) throw new Error("GithubIdが違います")
