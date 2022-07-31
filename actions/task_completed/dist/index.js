@@ -14993,9 +14993,13 @@ try {
                 })
                 .then((resRewards) => {
                     const rewards = resRewards.data.data;
-                    console.log(rewards);
-                    const reward = rewards.find((d) => d.attributes.issueNumber === issueNumber);
-                    if (reward == undefined) throw new Error("該当のIssueが存在しません")
+                    const reward = rewards.find((d) => {
+                        d.attributes.issueNumber === issueNumber
+                        console.log(d.attributes.issueNumber)
+                        console.log(issueNumber)
+                    }
+                    );
+                    if (reward.attributes.issueNumber !== issueNumber) throw new Error("該当のIssueが存在しません");
                     if (reward.attributes.githubId !== assigneeId) throw new Error("GithubIdが違います")
                     if (reward.attributes.branchName !== branchName) throw new Error("Branch名が違います")
                     const address = reward.attributes.symbolAddress;
