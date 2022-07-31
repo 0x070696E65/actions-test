@@ -5,8 +5,12 @@ const api_url = require('../const');
 
 try {
     const branchName = github.context.payload.pull_request.head.ref;
-    const issueNumber = github.context.payload.pull_request.number
+    const issueNumber = github.context.payload.pull_request.number;
     const assigneeId = github.context.payload.sender.login;
+
+    console.log(branchName)
+    console.log(issueNumber)
+    console.log(assigneeId)
 
     axios
         .post(api_url + '/api/auth/local', {
@@ -39,19 +43,19 @@ try {
                             console.log(res.data);
                         })
                         .catch((error) => {
-                            console.error(error.message);
+                            console.error("A: " + error.message);
                             throw error;
                         });
                 })
                 .catch((error) => {
-                    console.error(error.message);
+                    console.error("B: " + error.message);
                     throw error;
                 });
         })
         .catch((error) => {
-            console.error(error.message);
+            console.error("C: " + error.message);
             throw error;
         });
 } catch (error) {
-    core.setFailed(error.message);
+    core.setFailed("D: " + error.message);
 }
