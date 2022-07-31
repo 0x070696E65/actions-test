@@ -14971,16 +14971,12 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(3376);
 const github = __nccwpck_require__(1166);
 const axios = __nccwpck_require__(9966);
-const api_url = __nccwpck_require__(5405);
+const { api_url } = __nccwpck_require__(5405);
 
 try {
     const branchName = github.context.payload.pull_request.head.ref;
     const issueNumber = github.context.payload.pull_request.number;
     const assigneeId = github.context.payload.sender.login;
-
-    console.log(branchName)
-    console.log(issueNumber)
-    console.log(assigneeId)
 
     axios
         .post(api_url + '/api/auth/local', {
