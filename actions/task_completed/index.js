@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const axios = require('axios');
 const { api_url } = require('../const');
-
+//
 try {
     const branchName = github.context.payload.pull_request.head.ref;
     const issueNumber = github.context.payload.pull_request.number;
