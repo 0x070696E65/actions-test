@@ -5,8 +5,6 @@ const { api_url } = require('../const');
 
 try {
     const branchName = github.context.payload.pull_request.head.ref;
-    console.log(github.context.payload)
-    const issueNumber = Number(github.context.payload.pull_request.number);
     const assigneeId = github.context.payload.sender.login;
 
     axios
@@ -24,13 +22,7 @@ try {
                 })
                 .then((resRewards) => {
                     const rewards = resRewards.data.data;
-                    let reward = undefined;
-                    for(let i = 0; i < rewards.length; i++) {
-                        if(rewards[i].attributes.issueNumber) reward = rewards[i];
-                    }
-                    console.log(reward.attributes.issueNumber);
-                    console.log(issueNumber)
-                    if (reward.attributes.issueNumber != issueNumber) throw new Error("該当のIssueが存在しません");
+                    const reward = rewards.find((d) => d.attributes.branchName === branchName);
                     if (reward.attributes.githubId != assigneeId) throw new Error("GithubIdが違います")
                     if (reward.attributes.branchName != branchName) throw new Error("Branch名が違います")
                     const address = reward.attributes.symbolAddress;
