@@ -6,7 +6,7 @@ const { api_url } = require('../const');
 try {
   const issue = github.context.payload.issue;
   const assigneeId = issue.assignee.login;
-  const issue_number = issue.number;
+  const issue_number = Number(issue.number);
 
   axios
     .post(api_url + '/api/auth/local', {
