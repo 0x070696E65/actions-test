@@ -14997,10 +14997,11 @@ try {
                     for(let i = 0; i < rewards.length; i++) {
                         if(rewards[i].attributes.issueNumber) reward = rewards[i];
                     }
-                    console.log(reward);
-                    if (reward.attributes.issueNumber !== issueNumber) throw new Error("該当のIssueが存在しません");
-                    if (reward.attributes.githubId !== assigneeId) throw new Error("GithubIdが違います")
-                    if (reward.attributes.branchName !== branchName) throw new Error("Branch名が違います")
+                    console.log(reward.attributes.issueNumber)
+                    console.log(issueNumber)
+                    if (reward.attributes.issueNumber != issueNumber) throw new Error("該当のIssueが存在しません");
+                    if (reward.attributes.githubId != assigneeId) throw new Error("GithubIdが違います")
+                    if (reward.attributes.branchName != branchName) throw new Error("Branch名が違います")
                     const address = reward.attributes.symbolAddress;
                     const amount = reward.attributes.rewardAmount;
                     axios
