@@ -28,3 +28,5 @@ Value: Botのアドレス
 - 3<br>
 Name: BOT_PASSWORD<br>
 Value: Botのパスワード
+
+test
