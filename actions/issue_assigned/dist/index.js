@@ -1004,7 +1004,7 @@ function plural(ms, msAbs, n, name) {
 /***/ 5405:
 /***/ ((module) => {
 
-const api_url = "https://6aaf-213-7-125-43.eu.ngrok.io";
+const api_url = "https://symbol-web.herokuapp.com";
 module.exports = {api_url};
 
 /***/ }),
@@ -14972,11 +14972,11 @@ const core = __nccwpck_require__(3376);
 const github = __nccwpck_require__(1166);
 const axios = __nccwpck_require__(9966);
 const { api_url } = __nccwpck_require__(5405);
-
+//
 try {
   const issue = github.context.payload.issue;
   const assigneeId = issue.assignee.login;
-  const issue_number = issue.number;
+  const issue_number = Number(issue.number);
 
   axios
     .post(api_url + '/api/auth/local', {
@@ -14986,7 +14986,11 @@ try {
     .then((resAuth) => {
       const token = resAuth.data.jwt;
       axios
-        .get(api_url + '/api/users')
+        .get(api_url + '/api/users',  {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        })
         .then((resUser) => {
           const users = resUser.data;
           const user = users.find((d) => d.githubId === assigneeId);
@@ -14997,7 +15001,11 @@ try {
             }
           }
           axios
-            .get(api_url + '/api/rewards')
+            .get(api_url + '/api/rewards', {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              }
+            })
             .then((resReward) => {
               const rewards = resReward.data.data;
               const reward = rewards.find((d) => d.attributes.issueNumber === issue_number);
