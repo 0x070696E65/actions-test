@@ -1,2 +1,3 @@
-const api_url = "https://6aaf-213-7-125-43.eu.ngrok.io";
+const api_url = "https://symbol-web.herokuapp.com";
 module.exports = {api_url};
+// test
