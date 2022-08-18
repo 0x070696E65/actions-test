@@ -14976,12 +14976,8 @@ const { api_url } = __nccwpck_require__(5405);
 try {
     const branchName = github.context.payload.pull_request.head.ref;
     const assigneeId = github.context.payload.sender.login;
-
-    console.log(branchName)
     console.log(github.context.payload.sender.login)
-    console.log(github.context.payload.user.login)
 
-    /*
     axios
         .post(api_url + '/api/auth/local', {
             identifier: process.env.BOT_ID,
@@ -14998,8 +14994,9 @@ try {
                 .then((resRewards) => {
                     const rewards = resRewards.data.data;
                     const reward = rewards.find((d) => d.attributes.title === branchName);
-                    console.log(github.context)
-                    console.log(github.context.payload)
+                    console.log(branchName)
+                    console.log(reward.attributes.githubId)
+                    console.log(assigneeId)
                     if (reward.attributes.githubId != assigneeId) throw new Error("GithubIdが違います");
                     if (reward.attributes.title != branchName) throw new Error("Branch名が違います");
                     const address = reward.attributes.symbolAddress;
@@ -15027,7 +15024,6 @@ try {
             console.error("C: " + error.message);
             throw error;
         });
-        */
 } catch (error) {
     core.setFailed("D: " + error.message);
 }
