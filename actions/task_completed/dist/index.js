@@ -1004,7 +1004,7 @@ function plural(ms, msAbs, n, name) {
 /***/ 5405:
 /***/ ((module) => {
 
-const api_url = "https://6aaf-213-7-125-43.eu.ngrok.io";
+const api_url = "https://symbol-web.herokuapp.com";
 module.exports = {api_url};
 
 /***/ }),
@@ -14992,9 +14992,11 @@ try {
                 })
                 .then((resRewards) => {
                     const rewards = resRewards.data.data;
-                    const reward = rewards.find((d) => d.attributes.branchName === branchName);
-                    if (reward.attributes.githubId != assigneeId) throw new Error("GithubIdが違います")
-                    if (reward.attributes.branchName != branchName) throw new Error("Branch名が違います")
+                    const reward = rewards.find((d) => d.attributes.title === branchName);
+                    console.log(github.context)
+                    console.log(github.context.payload)
+                    if (reward.attributes.githubId != assigneeId) throw new Error("GithubIdが違います");
+                    if (reward.attributes.title != branchName) throw new Error("Branch名が違います");
                     const address = reward.attributes.symbolAddress;
                     const amount = reward.attributes.rewardAmount;
                     axios

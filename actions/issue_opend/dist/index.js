@@ -1004,7 +1004,7 @@ function plural(ms, msAbs, n, name) {
 /***/ 5405:
 /***/ ((module) => {
 
-const api_url = "https://6aaf-213-7-125-43.eu.ngrok.io";
+const api_url = "https://symbol-web.herokuapp.com";
 module.exports = {api_url};
 
 /***/ }),
@@ -15004,10 +15004,11 @@ try {
 
       const data = {
         "data": {
-          "branchName": title,
+          "title": title,
+          "details": comment,
           "issueNumber": issue_number,
           "issueUrl": issue_url,
-          "rewardType": 0,
+          "Role": "Developer",
           "rewardAmount": reward_amount,
         }
       }
