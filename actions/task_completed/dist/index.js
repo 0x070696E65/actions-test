@@ -14977,8 +14977,9 @@ try {
     const branchName = github.context.payload.pull_request.head.ref;
     const assigneeId = github.context.payload.sender.login;
 
-    console.log(github.context)
-    console.log(github.context.payload)
+    console.log(branchName)
+    console.log(github.context.payload.sender.login)
+    console.log(github.context.payload.user.login)
 
     /*
     axios
